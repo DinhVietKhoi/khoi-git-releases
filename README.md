@@ -11,6 +11,7 @@ Vào [bản mới nhất](https://github.com/DinhVietKhoi/khoi-git-releases/rele
 | Mac chip Apple (M1, M2, M3…) | `Khoi-Git-x.y.z-mac-arm64.dmg` |
 | Mac Intel | `Khoi-Git-x.y.z-mac-x64.dmg` |
 | Windows | `Khoi-Git-x.y.z-win-x64.exe` |
+| Linux (x64) | `Khoi-Git-x.y.z-linux-x86_64.AppImage` (mọi bản Linux) hoặc `Khoi-Git-x.y.z-linux-amd64.deb` (Ubuntu, Debian) |
 
 Không biết Mac chip gì: bấm biểu tượng Apple → About This Mac, dòng Chip ghi "Apple M…" là arm64, ghi "Intel" là x64.
 
@@ -19,6 +20,19 @@ Không biết Mac chip gì: bấm biểu tượng Apple → About This Mac, dòn
 **Mac:** mở file `.dmg`, kéo **Khoi Git** vào **Applications**, rồi Eject ổ đĩa Khoi Git trong Finder.
 
 **Windows:** chạy file `.exe`. Nếu Windows SmartScreen chặn thì bấm **More info → Run anyway**.
+
+**Linux:**
+
+- AppImage: cho file quyền chạy rồi mở:
+
+  ```bash
+  chmod +x Khoi-Git-*.AppImage
+  ./Khoi-Git-*.AppImage
+  ```
+
+  Nếu báo thiếu FUSE thì cài `libfuse2` (Ubuntu 22.04 trở lên: `sudo apt install libfuse2t64` hoặc `libfuse2`).
+- .deb: `sudo apt install ./Khoi-Git-*.deb`, sau đó mở Khoi Git từ menu ứng dụng.
+- Đăng nhập GitHub trên Linux cần kho mật khẩu của máy (GNOME Keyring hoặc KWallet). Không có thì dùng tài khoản `gh`.
 
 ## 3. Mở lần đầu trên Mac
 
@@ -64,8 +78,11 @@ Vào **Settings → Kết nối Git tới GitHub** để xem máy đang dùng đ
 
 App tự kiểm tra bản mới khi mở và mỗi 6 tiếng. Có bản mới thì hiện dải thông báo trên đầu app:
 
-- **Mac:** bấm cập nhật, app tải và mở file `.dmg`. Kéo Khoi Git vào Applications, chọn **Replace**, rồi mở lại app.
-- **Windows:** bấm cập nhật, bộ cài mới tự thay bản cũ.
+Bấm **Tải**, chờ xong rồi bấm **Cài và khởi động lại**:
+
+- **Mac** (từ bản 0.2.6): app tự thay bản trong Applications và mở lại. Nếu app không ghi được vào thư mục Applications, nó mở file `.dmg` để anh kéo Khoi Git vào Applications, chọn **Replace**, rồi mở lại app.
+- **Windows:** bộ cài mới tự thay bản cũ.
+- **Linux AppImage:** file mới thay file đang chạy rồi mở lại. Bản `.deb` thì cài lại bằng `sudo apt install ./Khoi-Git-*.deb`.
 
 Danh sách repo, đăng nhập và cài đặt được giữ nguyên sau khi cập nhật.
 
@@ -78,3 +95,5 @@ rm -rf "$HOME/Library/Application Support/Khoi Git" ~/.khoi-git
 ```
 
 **Windows:** gỡ trong Settings → Apps, rồi xoá thư mục `%USERPROFILE%\.khoi-git`.
+
+**Linux:** xoá file AppImage, hoặc `sudo apt remove khoi-git` với bản .deb, rồi xoá `~/.khoi-git` và `~/.config/Khoi Git`.
